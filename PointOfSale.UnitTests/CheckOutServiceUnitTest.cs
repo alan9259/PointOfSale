@@ -35,8 +35,8 @@ namespace PointOfSale.UnitTests
         [InlineData("CCCCCCAAA", "$8.00")]
         [InlineData("CABBBBAACCBBCCC", "$33.50")]
         [InlineData("A", "$1.25")]
-        [InlineData("AC", "$2.25")]
-        [InlineData("B", "$4.25")]
+        [InlineData("WERT", "$0.00")]
+        [InlineData("ABZ", "$5.50")]
         public void CalculateTotal_InputStandard(string input, string expected)
         {
             var actual = _checkOutService.CheckOut(input);
