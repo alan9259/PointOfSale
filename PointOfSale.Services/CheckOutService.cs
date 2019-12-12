@@ -33,7 +33,7 @@ namespace PointOfSale.Services
                 throw new NullReferenceException("Invalid input");
             }
 
-            trimmedCodes = productCodes.Trim();
+            trimmedCodes = productCodes.Trim().ToUpper();
 
             SetPricing();
 
