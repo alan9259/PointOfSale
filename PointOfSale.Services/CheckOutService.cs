@@ -1,4 +1,4 @@
-﻿using Model;
+using Model;
 using Repository;
 using System;
 using System.Collections.Generic;
@@ -22,6 +22,12 @@ namespace PointOfSale.Services
             _productDict = new Dictionary<string, int>();
         }
 
+
+        /// <summary>
+        /// Calculate the total price for an entire shopping cart
+        /// </summary>
+        /// <param name="productCodes"></param>
+        /// <returns>$1.50</returns>
         public string CheckOut(string productCodes)
         {
             decimal total;
@@ -69,7 +75,8 @@ namespace PointOfSale.Services
             {
                 return;
             }
-                
+            
+            //count the total number of the same product
             if (_productDict.ContainsKey(productCode)) 
             {
                 _productDict[productCode]++;
@@ -89,6 +96,7 @@ namespace PointOfSale.Services
             {
                 if (_pricingDict.TryGetValue(product.Key, out Pricing p))
                 {
+                    //calculate volumed total base on the total number of code and the volume size
                     var volumedTotal = (product.Value / p.VolumeSize) * p.VolumePrice;
                     var unitTotal = (product.Value % p.VolumeSize) * p.UnitPrice;
 
