@@ -16,10 +16,13 @@ namespace PointOfSale.Services
         private readonly IPricingRepo _pricingRepo;
         private readonly IDictionary<string, int> _productDict;
         private IDictionary<string, Pricing> _pricingDict;
+        
         public CheckOutService(IPricingRepo pricingRepo)
         {
             _pricingRepo = pricingRepo;
             _productDict = new Dictionary<string, int>();
+            
+            SetPricing();
         }
 
 
@@ -40,9 +43,7 @@ namespace PointOfSale.Services
             }
 
             trimmedCodes = productCodes.Trim();
-
-            SetPricing();
-
+            
             for (int i = 0; i < trimmedCodes.Length; i++)
             {
                 var code = trimmedCodes[i].ToString();
