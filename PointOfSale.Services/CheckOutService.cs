@@ -39,19 +39,14 @@ namespace PointOfSale.Services
                 throw new NullReferenceException("Invalid input");
             }
 
-            trimmedCodes = productCodes.Trim().ToUpper();
+            trimmedCodes = productCodes.Trim();
 
             SetPricing();
 
             for (int i = 0; i < trimmedCodes.Length; i++)
             {
                 var code = trimmedCodes[i].ToString();
-
-                if (string.IsNullOrWhiteSpace(code))
-                {
-                    continue;
-                }
-
+                
                 ScanProduct(code);
             }
 
@@ -76,14 +71,16 @@ namespace PointOfSale.Services
                 return;
             }
             
+            var code = productCode.ToUpper();
+            
             //count the total number of the same product
-            if (_productDict.ContainsKey(productCode)) 
+            if (_productDict.ContainsKey(code)) 
             {
-                _productDict[productCode]++;
+                _productDict[code]++;
             }
             else
             {
-                _productDict.Add(productCode, 1);
+                _productDict.Add(code, 1);
             }
 
         }
