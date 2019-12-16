@@ -71,6 +71,7 @@ namespace PointOfSale.Services
                 return;
             }
             
+            //assumed lower case and upper case character represents the same product
             var code = productCode.ToUpper();
             
             //count the total number of the same product
